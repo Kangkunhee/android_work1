@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.File;
@@ -18,12 +19,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+    EditText et1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        et1 = (EditText)findViewById(R.id.editText);
     }
 
     public void onClick(View v) {
@@ -81,6 +83,19 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                break;
+
+            case R.id.button5:
+                String str = "";
+                File[] filelist = new File(path).listFiles();
+                for(int i = 0; i < filelist.length; i++) {
+                    if(filelist[i].isDirectory())
+                        str += "<폴더>" + filelist[i].toString() + "\n";
+                    else
+                        str += "<파일>" + filelist[i].toString() + "\n";
+                }
+                et1.setText(str);
+                msg = "파일 목록 가져오기 성공";
                 break;
         }
 
