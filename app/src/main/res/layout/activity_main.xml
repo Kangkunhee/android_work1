@@ -39,6 +39,7 @@
         android:id="@+id/button4" />
 
     <Button
+        android:onClick="onClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="파일목록가져오기"
